@@ -408,7 +408,8 @@ module MiniMagick
       command = command_builder.command
 
       sub = Subexec.run(command, :timeout => MiniMagick.timeout)
-
+      Rails.logger.debug command
+      # Rails.logger.debug sub
       if sub.exitstatus != 0
         # Clean up after ourselves in case of an error
         destroy!
