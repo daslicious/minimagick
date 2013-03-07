@@ -363,6 +363,7 @@ module MiniMagick
       c << @path if tool.to_s == "convert"
       block.call(c)
       c << @path
+      Rails.logger.debug "DEF combine options"
       run(c)
     end
 
@@ -408,8 +409,9 @@ module MiniMagick
       command = command_builder.command
 
       sub = Subexec.run(command, :timeout => MiniMagick.timeout)
+
       Rails.logger.debug command
-      # Rails.logger.debug sub
+      Rails.logger.debug "DEF RUN"
       if sub.exitstatus != 0
         # Clean up after ourselves in case of an error
         destroy!
